@@ -1,15 +1,12 @@
 /*
 
-  Polar Clock Lite DP watch (SDK 2.0)
+  Polar Clock Lite DP watch (SDK 3.0)
 
   Thanks to Team Pebble's Segment Six watchface...it was a big help!
 
  */
 
 #include "pebble.h"
-
-static GColor BACKGROUND_COLOR = GColorBlack;
-static GColor FOREGROUND_COLOR = GColorWhite;
 
 static char time_text[] = "00:00";
 static char date_text[] = "00 Xxx";
@@ -44,11 +41,11 @@ static void minute_display_layer_update_callback(Layer *layer, GContext* ctx) {
   GRect bounds = layer_get_bounds(layer);
   GPoint center = grect_center_point(&bounds);
 
-  graphics_context_set_fill_color(ctx, FOREGROUND_COLOR);
+  graphics_context_set_fill_color(ctx, GColorWhite);
 
   graphics_fill_circle(ctx, center, 65);
 
-  graphics_context_set_fill_color(ctx, BACKGROUND_COLOR);
+  graphics_context_set_fill_color(ctx, GColorBlack);
 
   for(; angle < 355; angle += 6) {
 
@@ -114,7 +111,7 @@ static void setup_time_date_layers() {
   
   text_time_layer = text_layer_create(bounds);
   time_layer_exists = true;
-  text_layer_set_text_color(text_time_layer, FOREGROUND_COLOR);
+  text_layer_set_text_color(text_time_layer, GColorWhite);
   text_layer_set_background_color(text_time_layer, GColorClear);
   text_layer_set_text_alignment(text_time_layer, GTextAlignmentCenter);
   
@@ -126,7 +123,7 @@ static void setup_time_date_layers() {
 
   text_date_layer = text_layer_create(bounds);
   date_layer_exists = true;
-  text_layer_set_text_color(text_date_layer, FOREGROUND_COLOR);
+  text_layer_set_text_color(text_date_layer, GColorWhite);
   text_layer_set_background_color(text_date_layer, GColorClear);
   text_layer_set_text_alignment(text_date_layer, GTextAlignmentCenter);
   
@@ -141,7 +138,7 @@ static void setup_time_date_layers() {
 
 static void init(void) {  
   window = window_create();
-  window_set_background_color(window, BACKGROUND_COLOR);
+  window_set_background_color(window, GColorBlack);
   window_stack_push(window, true);
   
   Layer *window_layer = window_get_root_layer(window);
